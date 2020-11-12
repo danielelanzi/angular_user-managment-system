@@ -12,27 +12,27 @@ export class UserService {
     email : 'dnlshiva@gmail.com',
     fiscalcode : 'LNZDNL91R16H501K',
     province : 'Roma',
-    phone : '3393745071',
+    phone : '1234567890',
     age : 29
   },
   {
     id : 2,
-    name : 'Iuliia',
-    lastname : 'Chubar',
+    name : 'abcdfg',
+    lastname : 'hilmno',
     email : 'dnlshiva@gmail.com',
     fiscalcode : 'LNZDNL91R16H501K',
     province : 'Roma',
-    phone : '3393745071',
+    phone : '1234567890',
     age : 29
   },
   {
     id : 3,
-    name : 'Lorenzo',
-    lastname : 'Lanzi',
+    name : 'pqrst',
+    lastname : 'uvz',
     email : 'dnlshiva@gmail.com',
     fiscalcode : 'LNZDNL91R16H501K',
     province : 'Roma',
-    phone : '3393745071',
+    phone : '1234567890',
     age : 3
   },
 ];

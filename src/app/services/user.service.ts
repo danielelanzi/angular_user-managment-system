@@ -43,6 +43,10 @@ getUsers(){
   return this.users;
 }
 
+getUser(id:number){
+  return this.users.find(user => user.id === id);
+}
+
 deleteUser(user){
   const index = this.users.indexOf(user);
   if(index>=0){
@@ -58,6 +62,7 @@ updateUser(user: UserInterface) {
   }
 }
 createUser(user: UserInterface) {
+  user.id = this.users.length + 1;
   this.users.splice(0,0,user)
 }
 

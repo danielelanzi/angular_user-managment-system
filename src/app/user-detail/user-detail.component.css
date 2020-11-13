@@ -1,4 +1,6 @@
-.user-form{
-  width: 98%;
-  margin: 0 auto;
+.buttons{
+  text-align: center;
+}
+.buttons button{
+  margin: 1px;
 }

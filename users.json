@@ -1,0 +1,15 @@
+{"data":[
+    {
+      "id" : 1,
+      "name" : "Daniele",
+      "email" : "dnlshiva@gmail.com",
+      "email_verified_at" : "2020-11-12 09:51:40",
+      "create_at" : "2020-11-12 09:51:40",
+      "update_at" : "2020-11-12 09:51:40",
+      "lastname" : "Lanzi",
+      "phone" : "1234567890",
+      "province" : "Roma",
+      "age" : 29
+  }
+ ]
+}

@@ -56,7 +56,6 @@ deleteUser(user){
 
 updateUser(user: UserInterface) {
   const idx = this.users.findIndex((v) => v.id === user.id);
-  alert(idx);
   if (idx !== -1) {
     this.users[idx] = user;
   }

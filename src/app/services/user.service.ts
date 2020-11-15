@@ -1,50 +1,31 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
 import {UserInterface} from '../interfaces/user';
+import { HttpClient } from '@angular/common/http';
+
+interface UsersResponse{
+  data: User[];
+  message: string;
+}
+interface UserResponse{
+  data: User;
+  message: string;
+}
 
 @Injectable()
 export class UserService {
-  users: User[] = [
-    {
-    id : 1,
-    name : 'Daniele',
-    lastname : 'Lanzi',
-    email : 'dnlshiva@gmail.com',
-    fiscalcode : 'LNZDNL91R16H501K',
-    province : 'Roma',
-    phone : '1234567890',
-    age : 29
-  },
-  {
-    id : 2,
-    name : 'abcdfg',
-    lastname : 'hilmno',
-    email : 'dnlshiva@gmail.com',
-    fiscalcode : 'LNZDNL91R16H501K',
-    province : 'Roma',
-    phone : '1234567890',
-    age : 29
-  },
-  {
-    id : 3,
-    name : 'pqrst',
-    lastname : 'uvz',
-    email : 'dnlshiva@gmail.com',
-    fiscalcode : 'LNZDNL91R16H501K',
-    province : 'Roma',
-    phone : '1234567890',
-    age : 3
-  },
-];
+  users: User[] = [];
 
-constructor() { }
+private APIURL = "https://api.mocki.io/v1/122457f2/users"
+
+constructor(private http: HttpClient) { }
 
 getUsers(){
-  return this.users;
+  return this.http.get<UsersResponse>(this.APIURL);
 }
 
 getUser(id:number){
-  return this.users.find(user => user.id === id);
+  return this.http.get<UserResponse>(this.APIURL + '/' + id);
 }
 
 deleteUser(user){

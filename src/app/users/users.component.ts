@@ -14,7 +14,10 @@ export class UsersComponent implements OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.users = this.service.getUsers();
+    this.service.getUsers()
+    .subscribe(res => {
+        this.users = res.data;
+      });
   }
 
   onDeleteUser(user: User){

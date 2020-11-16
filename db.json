@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Daniele",
+      "email": "dnlshiva@gmail.com",
+      "email_verified_at": "2020-11-12 09:51:40",
+      "create_at": "2020-11-12 09:51:40",
+      "update_at": "2020-11-12 09:51:40",
+      "lastname": "Lanzi",
+      "phone": "1234567890",
+      "province": "Roma",
+      "age": 29
+    },
+    {
+      "id": 2,
+      "name": "abcdfg",
+      "lastname": "hilmno",
+      "email": "dnlshiva@gmail.com",
+      "fiscalcode": "LNZDNL91R16H501K",
+      "province": "Roma",
+      "phone": "1234567890",
+      "age": 29
+    },
+    {
+      "id": 3,
+      "name": "pqrst",
+      "lastname": "uvz",
+      "email": "dnlshiva@gmail.com",
+      "fiscalcode": "LNZDNL91R16H501K",
+      "province": "Roma",
+      "phone": "1234567890",
+      "age": 3
+    }
+  ]
+}

@@ -9,7 +9,6 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./user-data.component.css']
 })
 export class UserDataComponent implements OnInit {
-
   public title = 'Dettaglio Utente';
   public User: User;
 
@@ -21,7 +20,7 @@ export class UserDataComponent implements OnInit {
       (p) =>{
         this.userService.getUser(+p.id)
         .subscribe(res => {
-          this.User = res.data
+          this.User = res;
         });
       }
     )

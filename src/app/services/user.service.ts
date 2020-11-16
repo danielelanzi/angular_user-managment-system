@@ -3,29 +3,20 @@ import { User } from '../classes/user';
 import {UserInterface} from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 
-interface UsersResponse{
-  data: User[];
-  message: string;
-}
-interface UserResponse{
-  data: User;
-  message: string;
-}
-
 @Injectable()
 export class UserService {
   users: User[] = [];
 
-private APIURL = "https://api.mocki.io/v1/122457f2/users"
+private APIURL = "http://localhost:3000/users";
 
 constructor(private http: HttpClient) { }
 
 getUsers(){
-  return this.http.get<UsersResponse>(this.APIURL);
+  return this.http.get<User[]>(this.APIURL)
 }
 
 getUser(id:number){
-  return this.http.get<UserResponse>(this.APIURL + '/' + id);
+  return this.http.get<User>(this.APIURL + '/' + id);
 }
 
 deleteUser(user){

@@ -1,36 +1,53 @@
-<form class="user-form">
+<form #f='ngForm' class="user-form">
   <input type="hidden" name="id" [(ngModel)]="user.id">
-  <div class="form-group">
-    <label for="firstname">Nome</label>
-    <input class="form-control" [(ngModel)]="user.name" name="firstname" id="firstname">
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <label for="firstname">Nome</label>
+      <input pattern="[a-zA-Z\]*" required minlength="3" #name="ngModel" class="form-control" [(ngModel)]="user.name" name="firstname" id="firstname">
+      <div *ngIf="name.dirty && name.touched &&  name.invalid">
+        <div *ngIf="name.errors.minlentgh" class="alert-danger">
+          La lunghezza minima è di {{name.errors.minlength.requiredLength}} caratteri
+        </div>
+        <div *ngIf="name.errors.pattern" class="alert-danger">
+          I pattern ammissibili sono i seguenti: {{name.errors.pattern.requiredPattern}}
+        </div>
+        <div *ngIf="name.errors.required" class="alert-danger">
+          Il campo nome è obbligatorio
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="lastname">Cognome</label>
+      <input class="form-control" [(ngModel)]="user.lastname" name="lastname" id="lastname">
+    </div>
   </div>
-  <div class="form-group">
-    <label for="lastname">Cognome</label>
-    <input class="form-control" [(ngModel)]="user.lastname" name="lastname" id="lastname">
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <label for="age">Età</label>
+      <input class="form-control" [(ngModel)]="user.age" type="number" name="age" id="age">
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="province">Provincia</label>
+      <input class="form-control" [(ngModel)]="user.province" type="text" name="province" id="province">
+    </div>
   </div>
-  <div class="form-group">
-    <label for="age">Età</label>
-    <input class="form-control" [(ngModel)]="user.age" type="number" name="age" id="age">
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <label for="email">Email</label>
+      <input class="form-control" [(ngModel)]="user.email" type="email" name="email" id="email">
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="phone">Telefono</label>
+      <input class="form-control" [(ngModel)]="user.phone" name="phone" id="phone">
+    </div>
   </div>
   <div class="form-group">
     <label for="fiscalcode">Codice Fiscale</label>
     <input class="form-control" [(ngModel)]="user.fiscalcode" name="fiscalcode" id="fiscalcode">
   </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" [(ngModel)]="user.email" type="email" name="email" id="email">
-  </div>
-  <div class="form-group">
-    <label for="phone">Telefono</label>
-    <input class="form-control" [(ngModel)]="user.phone" name="phone" id="phone">
-  </div>
-  <div class="form-group">
-    <label for="province">Provincia</label>
-    <input class="form-control" [(ngModel)]="user.province" type="text" name="province" id="province">
-  </div>
   <div class="buttons form-group form-footer">
     <button (click)="backToUsers()" class="btn btn-primary">Torna Indietro</button>
     <button class="btn btn-secondary" (click)="resetForm()">Reset</button>
-    <button class="btn btn-success" (click)="saveUser()">Salva</button>
+    <button [disabled]="f.invalid" class="btn btn-success" (click)="saveUser()">Salva</button>
   </div>
 </form>

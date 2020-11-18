@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form name="signupForm" #f='ngForm' (ngSubmit)="signUp(f)">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input required name ngModel type="name" #name="ngModel" name="name" id="name">
+        <div *ngIf="name.dirty && name.touched &&  name.invalid">
+          <div *ngIf="name.errors.minlentgh" class="alert-danger">
+            La lunghezza minima è di {{name.errors.minlength.requiredLength}} caratteri
+          </div>
+          <div *ngIf="email.errors.required" class="alert-danger">
+            Il campo email è obbligatorio
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input required email ngModel type="email" #email="ngModel" name="email" id="email">
+        <div *ngIf="email.dirty && email.touched &&  email.invalid">
+          <div *ngIf="email.errors.email" class="alert-danger">
+            Deve essere un email valida
+          </div>
+          <div *ngIf="email.errors.required" class="alert-danger">
+            Il campo email è obbligatorio
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input required ngModel class="form-control" minlength="6" type="password" #password="ngModel" name="password"
+          id="password">
+        <div *ngIf="password.dirty && password.touched &&  password.invalid">
+          <div *ngIf="password.errors.minlentgh" class="alert-danger">
+            La lunghezza minima è di {{password.errors.minlength.requiredLength}} caratteri
+          </div>
+          <div *ngIf="password.errors.required" class="alert-danger">
+            Il campo password è obbligatorio
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button [disabled]="!f.valid " class="btn btn-primary">Log In</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -14,44 +14,68 @@ export class UserDetailComponent implements OnInit {
   private userCopy: User;
   private _user: User;
 
-  @Input() set user(user: User){
+  @Input() set user(user: User) {
     this._user = user;
     this.userCopy = Object.assign({}, user);
   }
 
-  get user(){
+  get user() {
     return this._user;
   }
 
-   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router ) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
 
-   }
+  }
 
   ngOnInit() {
     this.user = new User();
-    this.route.params.subscribe(
+    this.route.paramMap.subscribe(
       (params) => {
-        if (!params.id) {
+        if (!params.get('id')) {
           return;
         }
-        this.userService.getUser(+params.id)
-        .subscribe(res => {
-          this.user = res;
-        });
+        this.userService.getUser(+params.get('id'))
+          .subscribe(res => {
+            this.user = res;
+          });
       }
     );
   }
 
-  saveUser(){
-    if (this.user.id > 0) {
-      this.userService.updateUser(this.user);
-    } else {
-      this.userService.createUser(this.user);
-    }
-    this.router.navigate(['users']);
+  updateUser() {
+    this.userService.updateUser(this.user).subscribe(
+      res => {
+        if (res) {
+          this.router.navigate(['users']);
+        } else {
+          alert('Errore');
+        }
+      }
+    );
   }
 
-  resetForm(){
+  createUser() {
+    this.userService.createUser(this.user).subscribe(
+      res => {
+        if (res) {
+          this.router.navigate(['users']);
+        } else {
+          alert('Errore');
+        }
+      }
+    );
+
+  }
+
+  saveUser() {
+    if (this.user.id > 0) {
+      this.updateUser();
+    } else {
+      this.createUser();
+    }
+  }
+
+  resetForm() {
     if (this.user.id === 0) {
       this.user = new User();
     } else {
@@ -59,7 +83,7 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  backToUsers(){
+  backToUsers() {
     this.router.navigate(['users']);
   }
 

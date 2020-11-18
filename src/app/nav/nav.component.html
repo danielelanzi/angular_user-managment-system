@@ -25,10 +25,13 @@
     </form>
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a *ngIf="!isUserLOggedIn" (click)="signIn()" class="nav-link" href="#">Login </a>
+        <a *ngIf="!isUserLOggedIn" (click)="signIn($event)" class="nav-link" href="#">Login </a>
       </li>
       <li class="nav-item text-nowrap">
-        <a *ngIf="!isUserLOggedIn" (click)="signUp()" class="nav-link" href="#">Sign Up</a>
+        <a *ngIf="!isUserLOggedIn" (click)="signUp($event)" class="nav-link" href="#">Sign Up</a>
+      </li>
+      <li *ngIf="isUserLOggedIn" class="nav-link">
+        {{username}}
       </li>
       <li class="nav-item text-nowrap">
         <a *ngIf="isUserLOggedIn" class="nav-link" href="#" (click)="logout($event)">Sign out</a>

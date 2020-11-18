@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../classes/user';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,8 +11,31 @@ import { AuthService } from '../services/auth.service';
 export class NavComponent implements OnInit {
   showMenu = false;
   @Output() onNewUser = new EventEmitter();
+
   public isUserLOggedIn = false;
-  constructor(private auth: AuthService, private router: Router) { }
+
+  public username: string;
+
+  constructor(private auth: AuthService, private router: Router) {
+    auth.usersignedin.subscribe(
+      (user: User) => {
+        this.username = user.name;
+        this.isUserLOggedIn = true;
+      }
+    )
+    auth.userlogout.subscribe(
+      () => {
+        this.username = '';
+        this.isUserLOggedIn = false;
+      }
+    )
+    auth.usersignedup.subscribe(
+      (user: User) => {
+        this.username = '';
+        this.isUserLOggedIn = true;
+      }
+    )
+  }
 
   ngOnInit() {
       this.isUserLOggedIn  = this.auth.isUserLoggedIn();
